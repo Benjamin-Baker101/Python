@@ -15,3 +15,11 @@ elif var >= 16:
     print("N")
 else:
     print("Negative")
+
+
+# Condintion true if condintion else condintion is false
+aBoolean = True
+
+aBoolean = True if var >= 25 else False
+print(aBoolean)
+
