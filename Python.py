@@ -31,3 +31,29 @@ print("1st chars to 4 \n\n", str_1[0:4])
 print("is" is str_1)
 
 
+print(r"Ignored")
+
+someRandomString = "StringsAreCool"
+print("1st 3", someRandomString[0:3])
+print("Every other chararcter" ,someRandomString[0:-1:2])
+someRandomString = someRandomString.replace("StringsAreCool", "StringsAreSuperCool")
+print(someRandomString)
+
+
+someRandomString = someRandomString[:8] + "R" + someRandomString[9:]
+print(someRandomString)
+
+print("?" not in someRandomString)
+
+print("You index", someRandomString.find(">>"))
+
+print("        Hello      ".rstrip())
+
+
+print("  ".join(["Some", "Letters"]))
+
+print("A letters".split(" "))
+
+int1 = int2 = 5
+print(f'{int1}+{int2} = {int1 + int2}')
+
