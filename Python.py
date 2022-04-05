@@ -1,11 +1,16 @@
+from ast import arg
+from calendar import different_locale
 from genericpath import exists
 import random
+import re
+from statistics import mode
 import sys
 import math
 import threading
 import time
 from functools import reduce
 from typing import List
+from webbrowser import get
 
 
 # If Else Statment
@@ -205,3 +210,146 @@ print("%(Name)s Cost $ %(Price).2f" % d1)
 
 # Sets
 
+s1 = set(["Purple", 1])
+s2 = {"Yellow", 1}
+print("Length", len(s2))
+s3 = s1 | s2
+print(s3)
+s3.add("Blue")
+s3.discard("Purple")
+print("Random", s3.pop())
+s3 |= s2
+print(s1.intersection(s2))
+print(s1.symmetric_difference(s2))
+print(s1.difference(s2))
+s3.clear()
+s4 = frozenset(["Orange", 7])
+
+
+# Functions
+
+def get_sum(num1: int = 1, num2: int = 1):
+    return num1 + num2
+
+print(get_sum(5,23))
+
+
+
+def get_sum2(*args):
+    sum = 0
+    for arg in args:
+        sum = sum + arg
+    return sum
+print(get_sum2(1, 3 ,5 ,7))
+
+
+def next_2(num):
+    return num + 1, num + 2
+
+i1, i2 = next_2(9)
+print(i1, i2)
+
+def mult_by(num):
+    return lambda x: x * num
+print("3 * 5 =", (mult_by(3)(5)))
+
+def mult_list(list, func):
+    for x in list:
+        print(func(x))
+mult_by_4 = mult_by(4)
+mult_list(list(range(0, 5)), mult_by_4)
+
+
+power_list = [lambda x: x**2,
+              lambda x: x**3,]
+
+#Maps
+
+one_to_4 = range(1,5)
+times_2 = lambda x: x * 2
+print("List:  ", list(map(times_2, one_to_4)))
+
+print(list(filter((lambda x: x % 2 == 0), range(1, 11))))
+
+print(reduce((lambda x,y: x + y), range(1,6)))
+
+# Exception Handling
+
+# while True:
+#     try:
+#         number = int(input("Enter A Number"))
+#         break
+#     except ValueError:
+#         print("You didnt enter a number")
+#     except:
+#         print("Unknown Error")
+# print("Correct")
+
+
+# File I/O
+
+with open("mydata.txt", mode="w", encoding="utf-8") as my_file:
+    my_file.write("Text \nRandom \nStuff")
+
+with open("mydata.txt", encoding="utf-8") as my_file:
+    print(my_file.read())
+
+print(my_file.closed)
+
+# Classes And Objects
+
+class Square:
+    def __init__(self, height="0", width="0"):
+        self.height = height
+        self.width = width
+    @property
+    def height(self):
+        print("Retrieving the height")
+        return self.__height
+
+    @height.setter
+    def height(self, value):
+        if value.isdigit():
+            self.__height = value
+        else:
+            print("Enter Numbers Only For Height")
+
+    @property
+    def width(self):
+        print("Retrieving the width")
+        return self.__width
+        
+    @width.setter
+    def width(self, value):
+        if value.isdigit():
+            self.__width = value
+        else:
+            print("Enter Numbers Only For width")
+
+    
+
+    def get_area(self):
+        return int(self.__width) * int(self.__height)
+
+square = Square()
+square.height = "10"
+square.width = "10"
+print("Area", square.get_area())
+
+
+# Inheritance & Polymorphism
+
+class Animal:
+    def __init__(self, name="unknown", height=0):
+        self.__name = name
+        self.__height = height
+    
+    @property
+    def name(self, name):
+        self.__name = name
+
+    def roaring_noise(self):
+        return "Rarwaararrr!!"
+    
+    def __str__(self):
+        return "{} is a {} and says {}".format(self.__name, type(self).__name__)
